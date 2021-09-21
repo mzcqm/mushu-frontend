@@ -1,0 +1,62 @@
+{
+  "name": "PancakeSwap Default List",
+  "timestamp": "2021-05-06T00:00:00Z",
+  "version": {
+    "major": 3,
+    "minor": 0,
+    "patch": 0
+  },
+  "tags": {},
+  "logoURI": "https://pancakeswap.finance/logo.png",
+  "keywords": ["pancake", "default"],
+  "tokens": [
+    {
+      "name": "MUSHU",
+      "symbol": "MUSHU",
+      "address": "0x123eFf8f4471594020259C83025d529cCbFac5b8",
+      "chainId": 80,
+      "decimals": 18,
+      "logoURI": "https://mushu.finance/images/stake/MUSHU.png"
+    },
+    {
+      "name": "RADR Network",
+      "symbol": "VBC",
+      "address": "0xeBe33f292A4F3fA9104A8d38A2cfFd9fe3D2d277",
+      "chainId": 80,
+      "decimals": 18,
+      "logoURI": "https://token.dera.finance/0xeBe33f292A4F3fA9104A8d38A2cfFd9fe3D2d277/logo-alt.svg"
+    },
+    {
+      "name": "Lendland",
+      "symbol": "LEND",
+      "address": "0x1589992c28120C8981C7360edbC7f68640718689",
+      "chainId": 80,
+      "decimals": 18,
+      "logoURI": "https://token.dera.finance/0x1589992c28120C8981C7360edbC7f68640718689/logo-alt.svg"
+    },
+    {
+      "name": "Novaswap",
+      "symbol": "NOVA",
+      "address": "0xb7a72452d0ce44683C7492289a48F315865cb4B3",
+      "chainId": 80,
+      "decimals": 18,
+      "logoURI": "https://token.dera.finance/0xb7a72452d0ce44683C7492289a48F315865cb4B3/logo-alt.svg"
+    },
+    {
+      "name": "Ethereum Token",
+      "symbol": "ETH",
+      "address": "0x4DfC12BeEce828c46A8F19A2247a8615C47AefdA",
+      "chainId": 80,
+      "decimals": 18,
+      "logoURI": "https://token.dera.finance/0x4DfC12BeEce828c46A8F19A2247a8615C47AefdA/logo-alt.svg"
+    },
+    {
+      "name": "Tether USD",
+      "symbol": "USDT",
+      "address": "0x1Dc22853E8517c79058939Ae0DDBeF6d5e3c0199",
+      "chainId": 80,
+      "decimals": 18,
+      "logoURI": "https://token.dera.finance/0x1Dc22853E8517c79058939Ae0DDBeF6d5e3c0199/logo-alt.svg"
+    }
+  ]
+}
