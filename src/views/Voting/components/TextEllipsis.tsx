@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { Text } from 'uikit'
+import {Text} from 'uikit'
 
 const TextEllipsis = styled(Text)`
   overflow: hidden;

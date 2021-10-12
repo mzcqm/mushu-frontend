@@ -1,5 +1,5 @@
-import styled, { css, keyframes } from 'styled-components'
-import { Card, Box } from 'uikit'
+import styled, {css, keyframes} from 'styled-components'
+import {Box, Card} from 'uikit'
 
 const PromotedGradient = keyframes`
   0% {
@@ -14,7 +14,7 @@ const PromotedGradient = keyframes`
 `
 
 interface PromotedStyleCardProps {
-  isDesktop: boolean
+    isDesktop: boolean
 }
 
 export const StyledCard = styled(Card)<{ isPromoted?: PromotedStyleCardProps; isFinished?: boolean }>`
@@ -24,33 +24,33 @@ export const StyledCard = styled(Card)<{ isPromoted?: PromotedStyleCardProps; is
   flex-direction: column;
   align-self: baseline;
   position: relative;
-  color: ${({ isFinished, theme }) => theme.colors[isFinished ? 'textDisabled' : 'secondary']};
+  color: ${({isFinished, theme}) => theme.colors[isFinished ? 'textDisabled' : 'secondary']};
   box-shadow: 0px 1px 4px rgba(25, 19, 38, 0.15);
 
-  ${({ isPromoted, theme }) =>
+  ${({isPromoted, theme}) =>
     isPromoted
-      ? css`
+        ? css`
           background: linear-gradient(180deg, ${theme.colors.primaryBright}, ${theme.colors.secondary});
           padding: 1px 1px 3px 1px;
           background-size: 400% 400%;
         `
-      : `background: ${(props) => props.theme.card.background};`}
+        : `background: ${(props) => props.theme.card.background};`}
 
-  ${({ isPromoted }) =>
+  ${({isPromoted}) =>
     isPromoted &&
     isPromoted.isDesktop &&
     css`
       animation: ${PromotedGradient} 3s ease infinite;
     `}
 
-  ${({ theme }) => theme.mediaQueries.sm} {
+  ${({theme}) => theme.mediaQueries.sm} {
     margin: 0 12px 46px;
   }
 `
 
 export const StyledCardInner = styled(Box)`
-  background: ${({ theme }) => theme.card.background};
-  border-radius: ${({ theme }) => theme.radii.card};
+  background: ${({theme}) => theme.card.background};
+  border-radius: ${({theme}) => theme.radii.card};
 `
 
 export default StyledCard

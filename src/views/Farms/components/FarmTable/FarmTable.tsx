@@ -1,21 +1,21 @@
-import React, { useRef } from 'react'
+import React, {useRef} from 'react'
 import styled from 'styled-components'
-import { useTable, Button, ChevronUpIcon, ColumnType } from 'uikit'
-import { useTranslation } from 'contexts/Localization'
+import {Button, ChevronUpIcon, ColumnType, useTable} from 'uikit'
+import {useTranslation} from 'contexts/Localization'
 
-import Row, { RowProps } from './Row'
+import Row, {RowProps} from './Row'
 
 export interface ITableProps {
-  data: RowProps[]
-  columns: ColumnType<RowProps>[]
-  userDataReady: boolean
-  sortColumn?: string
+    data: RowProps[]
+    columns: ColumnType<RowProps>[]
+    userDataReady: boolean
+    sortColumn?: string
 }
 
 const Container = styled.div`
-  filter: ${({ theme }) => theme.card.dropShadow};
+  filter: ${({theme}) => theme.card.dropShadow};
   width: 100%;
-  background: ${({ theme }) => theme.card.background};
+  background: ${({theme}) => theme.card.background};
   border-radius: 16px;
   margin: 16px 0px;
 `
@@ -58,39 +58,40 @@ const ScrollButtonContainer = styled.div`
 `
 
 const FarmTable: React.FC<ITableProps> = (props) => {
-  const tableWrapperEl = useRef<HTMLDivElement>(null)
-  const { t } = useTranslation()
-  const { data, columns, userDataReady } = props
+    const tableWrapperEl = useRef<HTMLDivElement>(null)
+    const {t} = useTranslation()
+    const {data, columns, userDataReady} = props
 
-  const { rows } = useTable(columns, data, { sortable: true, sortColumn: 'farm' })
+    const {rows} = useTable(columns, data, {sortable: true, sortColumn: 'farm'})
 
-  const scrollToTop = (): void => {
-    tableWrapperEl.current.scrollIntoView({
-      behavior: 'smooth',
-    })
-  }
+    const scrollToTop = (): void => {
+        tableWrapperEl.current.scrollIntoView({
+            behavior: 'smooth',
+        })
+    }
 
-  return (
-    <Container>
-      <TableContainer>
-        <TableWrapper ref={tableWrapperEl}>
-          <StyledTable>
-            <TableBody>
-              {rows.map((row) => {
-                return <Row {...row.original} userDataReady={userDataReady} key={`table-row-${row.id}`} />
-              })}
-            </TableBody>
-          </StyledTable>
-        </TableWrapper>
-        <ScrollButtonContainer>
-          <Button variant="text" onClick={scrollToTop}>
-            {t('To Top')}
-            <ChevronUpIcon color="primary" />
-          </Button>
-        </ScrollButtonContainer>
-      </TableContainer>
-    </Container>
-  )
+    return (
+        <Container>
+            <TableContainer>
+                <TableWrapper ref={tableWrapperEl}>
+                    <StyledTable>
+                        <TableBody>
+                            {rows.map((row) => {
+                                return <Row {...row.original} userDataReady={userDataReady}
+                                            key={`table-row-${row.id}`}/>
+                            })}
+                        </TableBody>
+                    </StyledTable>
+                </TableWrapper>
+                <ScrollButtonContainer>
+                    <Button variant="text" onClick={scrollToTop}>
+                        {t('To Top')}
+                        <ChevronUpIcon color="primary"/>
+                    </Button>
+                </ScrollButtonContainer>
+            </TableContainer>
+        </Container>
+    )
 }
 
 export default FarmTable

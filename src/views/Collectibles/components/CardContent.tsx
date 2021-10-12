@@ -15,13 +15,13 @@ const StyledCardContent = styled.div`
   display: flex;
 `
 
-const CardContent = ({ imgSrc, children }) => {
-  return (
-    <StyledCardContent>
-      <Image src={imgSrc} alt="card icon" />
-      <Content>{children}</Content>
-    </StyledCardContent>
-  )
+const CardContent = ({imgSrc, children}) => {
+    return (
+        <StyledCardContent>
+            <Image src={imgSrc} alt="card icon"/>
+            <Content>{children}</Content>
+        </StyledCardContent>
+    )
 }
 
 export default CardContent

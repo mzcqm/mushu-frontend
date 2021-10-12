@@ -13,11 +13,11 @@ const priceHelperLps: FarmConfig[] = [
     pid: null,
     lpSymbol: 'MUSHU-RNA LP',
     lpAddresses: {
-      80: '0xad0b3bbe1046ee73b3527cd9cdf6f44fa4f9904f',
+      80: '0x785290dfb5d8e2a8cc34ec9ef7dadad6fce95a7a',
       8080: '0xad0b3bbe1046ee73b3527cd9cdf6f44fa4f9904f',
     },
-    token: tokens.cake,
-    quoteToken: tokens.wbnb,
+    token: tokens.mushu,
+    quoteToken: tokens.wrna,
   },
 ]
 

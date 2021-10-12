@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { RibbonDownMid, RibbonUpMid, RibbonDownSide, RibbonUpSide } from '../../svgs'
+import {RibbonDownMid, RibbonDownSide, RibbonUpMid, RibbonUpSide} from '../../svgs'
 
 const MidRibbonStyles = `
 width: 100%;

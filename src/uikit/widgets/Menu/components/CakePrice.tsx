@@ -23,22 +23,16 @@ const PriceLink = styled.a`
 
 const CakePrice: React.FC<Props> = ({ cakePriceUsd }) => {
   return cakePriceUsd ? (
-    <Skeleton width={80} height={24} />
+    <PriceLink
+      href="#"
+      target="_blank"
+    >
+      <img src="/logo.png" alt="logo" width="24px" className="mr-1"/>
+      <Text color="textSubtle" bold>{`$${cakePriceUsd.toFixed(3)}`}</Text>
+    </PriceLink>
   ) : (
     <Skeleton width={80} height={24} />
   );
 };
-//   return cakePriceUsd ? (
-//     <PriceLink
-//       href="#"
-//       target="_blank"
-//     >
-//       <img src="/logo.png" alt="logo" width="24px" className="mr-1"/>
-//       <Text color="textSubtle" bold>{`$${cakePriceUsd.toFixed(3)}`}</Text>
-//     </PriceLink>
-//   ) : (
-//     <Skeleton width={80} height={24} />
-//   );
-// };
 
 export default React.memo(CakePrice);

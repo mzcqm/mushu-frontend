@@ -1,8 +1,10 @@
-import React from 'react'
+import React, {useEffect, useState} from 'react'
 import styled from 'styled-components'
-import { Card, CardBody, Heading, Skeleton, Text } from 'uikit'
-import { useTranslation } from 'contexts/Localization'
-import { useGetStats } from 'hooks/api'
+import {Card, CardBody, Heading, Skeleton} from 'uikit'
+import {useTranslation} from 'contexts/Localization'
+import {useGetStats} from 'hooks/api'
+import {useFarms} from "../../../state/farms/hooks";
+import BigNumber from "bignumber.js";
 
 const StyledTotalValueLockedCard = styled(Card)`
   align-items: center;
@@ -17,29 +19,38 @@ const StyledTotalValueLockedCard = styled(Card)`
 `
 
 const TotalValueLockedCard = () => {
-  const { t } = useTranslation()
-  const data = useGetStats()
-  const tvl = data ? data.tvl.toLocaleString('en-US', { maximumFractionDigits: 0 }) : null
+    const {t} = useTranslation()
+    // const data = useGetStats()
+    // const tvl = data ? data.tvl.toLocaleString('en-US', {maximumFractionDigits: 0}) : null
+    const farms = useFarms()
+    const [tvl, setTvl] = useState(0);
+    useEffect(() => {
+        if (farms.data.length > 0) {
+            let total = 0
+            farms.data.map(farm=> {
+                 total += new BigNumber(farm.lpTotalInQuoteToken).times(farm.quoteToken.busdPrice).toNumber()
+            })
+            setTvl(total)
+        }
+    }, [farms]);
 
-  return (
-    <StyledTotalValueLockedCard>
-      <CardBody>
-        <Heading scale="lg" mb="24px">
-          {t('Total Value Locked (TVL)')}
-        </Heading>
-        {data ? (
-          <>
-            <Heading scale="xl">N/A</Heading>
-            {/* <Heading scale="xl">{`$${tvl}`}</Heading> */}
-            <Text color="textSubtle">{t('Across all LPs and Syrup Pools')}</Text>
-          </>
-        ) : (
-          <Skeleton height={66} />
-        )}
-        {/* <Heading scale="xl">{`$${0}`}</Heading> */}
-      </CardBody>
-    </StyledTotalValueLockedCard>
-  )
+    return (
+        <StyledTotalValueLockedCard>
+            <CardBody>
+                <Heading scale="lg" mb="24px">
+                    {t('Total Value Locked (TVL)')}
+                </Heading>
+                {tvl ? (
+                    <>
+                        <Heading scale="xl">{`$${tvl.toLocaleString("EN")}`}</Heading>
+                    </>
+                ) : (
+                    <Skeleton height={66}/>
+                )}
+                {/* <Heading scale="xl">{`$${0}`}</Heading> */}
+            </CardBody>
+        </StyledTotalValueLockedCard>
+    )
 }
 
 export default TotalValueLockedCard

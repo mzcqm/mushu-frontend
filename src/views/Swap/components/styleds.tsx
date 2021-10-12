@@ -1,7 +1,7 @@
 import React from 'react'
-import { Text, ErrorIcon } from 'uikit'
-import styled, { css } from 'styled-components'
-import { AutoColumn } from 'components/Layout/Column'
+import {ErrorIcon, Text} from 'uikit'
+import styled, {css} from 'styled-components'
+import {AutoColumn} from 'components/Layout/Column'
 
 export const Wrapper = styled.div`
   position: relative;
@@ -11,32 +11,32 @@ export const Wrapper = styled.div`
 export const ArrowWrapper = styled.div<{ clickable: boolean }>`
   padding: 2px;
 
-  ${({ clickable }) =>
+  ${({clickable}) =>
     clickable
-      ? css`
+        ? css`
           :hover {
             cursor: pointer;
             opacity: 0.8;
           }
         `
-      : null}
+        : null}
 `
 
 export const ErrorText = styled(Text)<{ severity?: 0 | 1 | 2 | 3 | 4 }>`
-  color: ${({ theme, severity }) =>
+  color: ${({theme, severity}) =>
     severity === 3 || severity === 4
-      ? theme.colors.failure
-      : severity === 2
-      ? theme.colors.warning
-      : severity === 1
-      ? theme.colors.text
-      : theme.colors.success};
+        ? theme.colors.failure
+        : severity === 2
+            ? theme.colors.warning
+            : severity === 1
+                ? theme.colors.text
+                : theme.colors.success};
 `
 
 export const StyledBalanceMaxMini = styled.button`
   height: 22px;
   width: 22px;
-  background-color: ${({ theme }) => theme.colors.background};
+  background-color: ${({theme}) => theme.colors.background};
   border: none;
   border-radius: 50%;
   padding: 0.2rem;
@@ -44,27 +44,27 @@ export const StyledBalanceMaxMini = styled.button`
   font-weight: 400;
   margin-left: 0.4rem;
   cursor: pointer;
-  color: ${({ theme }) => theme.colors.text};
+  color: ${({theme}) => theme.colors.text};
   display: flex;
   justify-content: center;
   align-items: center;
   float: right;
 
   :hover {
-    background-color: ${({ theme }) => theme.colors.dropdown};
+    background-color: ${({theme}) => theme.colors.dropdown};
   }
   :focus {
-    background-color: ${({ theme }) => theme.colors.dropdown};
+    background-color: ${({theme}) => theme.colors.dropdown};
     outline: none;
   }
 `
 
-export const TruncatedText = styled(Text).attrs({ ellipsis: true })`
+export const TruncatedText = styled(Text).attrs({ellipsis: true})`
   width: 220px;
 `
 
 const SwapCallbackErrorInner = styled.div`
-  background-color: ${({ theme }) => `${theme.colors.failure}33`};
+  background-color: ${({theme}) => `${theme.colors.failure}33`};
   border-radius: 1rem;
   display: flex;
   align-items: center;
@@ -72,7 +72,7 @@ const SwapCallbackErrorInner = styled.div`
   width: 100%;
   padding: 3rem 1.25rem 1rem 1rem;
   margin-top: -2rem;
-  color: ${({ theme }) => theme.colors.failure};
+  color: ${({theme}) => theme.colors.failure};
   z-index: -1;
   p {
     padding: 0;
@@ -82,7 +82,7 @@ const SwapCallbackErrorInner = styled.div`
 `
 
 const SwapCallbackErrorInnerAlertTriangle = styled.div`
-  background-color: ${({ theme }) => `${theme.colors.failure}33`};
+  background-color: ${({theme}) => `${theme.colors.failure}33`};
   display: flex;
   align-items: center;
   justify-content: center;
@@ -92,19 +92,19 @@ const SwapCallbackErrorInnerAlertTriangle = styled.div`
   height: 48px;
 `
 
-export function SwapCallbackError({ error }: { error: string }) {
-  return (
-    <SwapCallbackErrorInner>
-      <SwapCallbackErrorInnerAlertTriangle>
-        <ErrorIcon width="24px" />
-      </SwapCallbackErrorInnerAlertTriangle>
-      <p>{error}</p>
-    </SwapCallbackErrorInner>
-  )
+export function SwapCallbackError({error}: { error: string }) {
+    return (
+        <SwapCallbackErrorInner>
+            <SwapCallbackErrorInnerAlertTriangle>
+                <ErrorIcon width="24px"/>
+            </SwapCallbackErrorInnerAlertTriangle>
+            <p>{error}</p>
+        </SwapCallbackErrorInner>
+    )
 }
 
 export const SwapShowAcceptChanges = styled(AutoColumn)`
-  background-color: ${({ theme }) => `${theme.colors.warning}33`};
+  background-color: ${({theme}) => `${theme.colors.warning}33`};
   padding: 0.5rem;
   border-radius: 12px;
   margin-top: 8px;

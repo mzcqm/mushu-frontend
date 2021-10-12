@@ -6,7 +6,7 @@ const Layout = styled.div`
   grid-gap: 32px;
   grid-template-columns: minmax(0, 1fr);
 
-  ${({ theme }) => theme.mediaQueries.lg} {
+  ${({theme}) => theme.mediaQueries.lg} {
     grid-template-columns: 1fr 332px;
   }
 `

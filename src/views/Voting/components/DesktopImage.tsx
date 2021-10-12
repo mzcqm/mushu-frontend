@@ -1,10 +1,10 @@
-import { Image } from 'uikit'
+import {Image} from 'uikit'
 import styled from 'styled-components'
 
 const DesktopImage = styled(Image)`
   display: none;
 
-  ${({ theme }) => theme.mediaQueries.lg} {
+  ${({theme}) => theme.mediaQueries.lg} {
     display: block;
   }
 `

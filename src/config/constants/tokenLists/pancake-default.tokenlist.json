@@ -13,7 +13,7 @@
     {
       "name": "MUSHU",
       "symbol": "MUSHU",
-      "address": "0x123eFf8f4471594020259C83025d529cCbFac5b8",
+      "address": "0x5482e669Eb8eA3B4EE1ff5eCe48D343195a90Dab",
       "chainId": 80,
       "decimals": 18,
       "logoURI": "https://mushu.finance/images/stake/MUSHU.png"
@@ -55,7 +55,7 @@
       "symbol": "USDT",
       "address": "0x1Dc22853E8517c79058939Ae0DDBeF6d5e3c0199",
       "chainId": 80,
-      "decimals": 18,
+      "decimals": 6,
       "logoURI": "https://token.dera.finance/0x1Dc22853E8517c79058939Ae0DDBeF6d5e3c0199/logo-alt.svg"
     }
   ]

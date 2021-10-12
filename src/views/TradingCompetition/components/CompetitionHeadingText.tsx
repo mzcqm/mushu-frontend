@@ -1,5 +1,5 @@
-import { Heading } from 'uikit'
-import styled, { DefaultTheme } from 'styled-components'
+import {Heading} from 'uikit'
+import styled, {DefaultTheme} from 'styled-components'
 
 const H1SizeStyles = (theme: DefaultTheme) => `
   font-size: 48px;
@@ -28,10 +28,10 @@ const sharedStyles = (props: HeadingProps) => `
   -webkit-background-clip: text;
   ${
     props.$fill
-      ? `-webkit-text-fill-color: transparent;`
-      : `-webkit-text-stroke: 4px transparent;
+        ? `-webkit-text-fill-color: transparent;`
+        : `-webkit-text-stroke: 4px transparent;
        text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);`
-  }
+}
 `
 
 const sharedVisiblyHiddenStyles = `
@@ -40,27 +40,27 @@ const sharedVisiblyHiddenStyles = `
 `
 
 interface HeadingProps {
-  background?: string
-  $fill?: boolean
+    background?: string
+    $fill?: boolean
 }
 
 export const Heading1Text = styled(Heading)<HeadingProps>`
-  ${({ theme }) => H1SizeStyles(theme)}
+  ${({theme}) => H1SizeStyles(theme)}
   ${(props) => sharedStyles(props)}
 `
 
 export const Heading2Text = styled(Heading)<HeadingProps>`
-  ${({ theme }) => H2SizeStyles(theme)}
+  ${({theme}) => H2SizeStyles(theme)}
   ${(props) => sharedStyles(props)}
 `
 
 export const VisuallyHiddenHeading1Text = styled(Heading)`
-  ${({ theme }) => H1SizeStyles(theme)}
+  ${({theme}) => H1SizeStyles(theme)}
   ${sharedVisiblyHiddenStyles}
 `
 
 export const VisuallyHiddenHeading2Text = styled(Heading)`
-  ${({ theme }) => H2SizeStyles(theme)}
+  ${({theme}) => H2SizeStyles(theme)}
   ${sharedVisiblyHiddenStyles}
 `
 

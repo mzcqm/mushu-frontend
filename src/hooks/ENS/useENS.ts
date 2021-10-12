@@ -1,4 +1,4 @@
-import { isAddress } from '../../utils'
+import {isAddress} from '../../utils'
 import useENSAddress from './useENSAddress'
 import useENSName from './useENSName'
 
@@ -7,17 +7,17 @@ import useENSName from './useENSName'
  * @param nameOrAddress ENS name or address
  */
 export default function useENS(nameOrAddress?: string | null): {
-  loading: boolean
-  address: string | null
-  name: string | null
+    loading: boolean
+    address: string | null
+    name: string | null
 } {
-  const validated = isAddress(nameOrAddress)
-  const reverseLookup = useENSName(validated || undefined)
-  const lookup = useENSAddress(nameOrAddress)
+    const validated = isAddress(nameOrAddress)
+    const reverseLookup = useENSName(validated || undefined)
+    const lookup = useENSAddress(nameOrAddress)
 
-  return {
-    loading: reverseLookup.loading || lookup.loading,
-    address: validated || lookup.address,
-    name: reverseLookup.ENSName ? reverseLookup.ENSName : !validated && lookup.address ? nameOrAddress || null : null,
-  }
+    return {
+        loading: reverseLookup.loading || lookup.loading,
+        address: validated || lookup.address,
+        name: reverseLookup.ENSName ? reverseLookup.ENSName : !validated && lookup.address ? nameOrAddress || null : null,
+    }
 }

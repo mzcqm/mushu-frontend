@@ -1,10 +1,10 @@
 import React from 'react'
-import { Box, BoxProps } from 'uikit'
+import {Box, BoxProps} from 'uikit'
 import styled from 'styled-components'
 
 export const VotingBox = styled.div`
   align-items: center;
-  border: 1px solid ${({ theme }) => theme.colors.cardBorder};
+  border: 1px solid ${({theme}) => theme.colors.cardBorder};
   border-radius: 12px;
   display: flex;
   height: 64px;
@@ -14,5 +14,5 @@ export const VotingBox = styled.div`
 `
 
 export const ModalInner: React.FC<BoxProps> = (props) => {
-  return <Box mb="24px" maxWidth="320px" {...props} />
+    return <Box mb="24px" maxWidth="320px" {...props} />
 }

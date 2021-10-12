@@ -1,14 +1,14 @@
 import React from 'react'
 import styled from 'styled-components'
-import { useWeb3React } from '@web3-react/core'
-import { Box, BlockIcon, CardBody } from 'uikit'
-import { useTranslation } from 'contexts/Localization'
-import { NodeRound, BetPosition, NodeLedger } from 'state/types'
-import { useGetBetByEpoch } from 'state/hooks'
-import { useBlock } from 'state/block/hooks'
-import { formatBigNumberToFixed } from 'utils/formatBalance'
-import { getHasRoundFailed, getNetPayoutv2 } from '../../helpers'
-import { RoundResult } from '../RoundResult'
+import {useWeb3React} from '@web3-react/core'
+import {BlockIcon, Box, CardBody} from 'uikit'
+import {useTranslation} from 'contexts/Localization'
+import {BetPosition, NodeLedger, NodeRound} from 'state/types'
+import {useGetBetByEpoch} from 'state/hooks'
+import {useBlock} from 'state/block/hooks'
+import {formatBigNumberToFixed} from 'utils/formatBalance'
+import {getHasRoundFailed, getNetPayoutv2} from '../../helpers'
+import {RoundResult} from '../RoundResult'
 import MultiplierArrow from './MultiplierArrow'
 import Card from './Card'
 import CardHeader from './CardHeader'
@@ -16,12 +16,12 @@ import CollectWinningsOverlay from './CollectWinningsOverlay'
 import CanceledRoundCard from './CanceledRoundCard'
 
 interface ExpiredRoundCardProps {
-  round: NodeRound
-  betAmount?: NodeLedger['amount']
-  hasEnteredUp: boolean
-  hasEnteredDown: boolean
-  bullMultiplier: string
-  bearMultiplier: string
+    round: NodeRound
+    betAmount?: NodeLedger['amount']
+    hasEnteredUp: boolean
+    hasEnteredDown: boolean
+    bullMultiplier: string
+    bearMultiplier: string
 }
 
 const StyledExpiredRoundCard = styled(Card)`
@@ -34,63 +34,63 @@ const StyledExpiredRoundCard = styled(Card)`
 `
 
 const ExpiredRoundCard: React.FC<ExpiredRoundCardProps> = ({
-  round,
-  betAmount,
-  hasEnteredUp,
-  hasEnteredDown,
-  bullMultiplier,
-  bearMultiplier,
-}) => {
-  const { t } = useTranslation()
-  const { account } = useWeb3React()
-  const { initialBlock } = useBlock()
-  const { epoch, endBlock, lockPrice, closePrice } = round
+                                                               round,
+                                                               betAmount,
+                                                               hasEnteredUp,
+                                                               hasEnteredDown,
+                                                               bullMultiplier,
+                                                               bearMultiplier,
+                                                           }) => {
+    const {t} = useTranslation()
+    const {account} = useWeb3React()
+    const {initialBlock} = useBlock()
+    const {epoch, endBlock, lockPrice, closePrice} = round
 
-  const betPosition = closePrice > lockPrice ? BetPosition.BULL : BetPosition.BEAR
-  const ledger = useGetBetByEpoch(account, epoch)
-  const payout = getNetPayoutv2(ledger, round)
-  const formattedPayout = payout.toUnsafeFloat().toFixed(4)
-  const hasRoundFailed = getHasRoundFailed(round, initialBlock)
+    const betPosition = closePrice > lockPrice ? BetPosition.BULL : BetPosition.BEAR
+    const ledger = useGetBetByEpoch(account, epoch)
+    const payout = getNetPayoutv2(ledger, round)
+    const formattedPayout = payout.toUnsafeFloat().toFixed(4)
+    const hasRoundFailed = getHasRoundFailed(round, initialBlock)
 
-  if (hasRoundFailed) {
-    return <CanceledRoundCard round={round} />
-  }
+    if (hasRoundFailed) {
+        return <CanceledRoundCard round={round}/>
+    }
 
-  return (
-    <Box position="relative">
-      <StyledExpiredRoundCard>
-        <CardHeader
-          status="expired"
-          icon={<BlockIcon mr="4px" width="21px" color="textDisabled" />}
-          title={t('Expired')}
-          blockNumber={endBlock}
-          epoch={round.epoch}
-        />
-        <CardBody p="16px" style={{ position: 'relative' }}>
-          <MultiplierArrow
-            betAmount={betAmount}
-            multiplier={bullMultiplier}
-            isActive={betPosition === BetPosition.BULL}
-            hasEntered={hasEnteredUp}
-          />
-          <RoundResult round={round} hasFailed={hasRoundFailed} />
-          <MultiplierArrow
-            betAmount={betAmount}
-            multiplier={bearMultiplier}
-            betPosition={BetPosition.BEAR}
-            isActive={betPosition === BetPosition.BEAR}
-            hasEntered={hasEnteredDown}
-          />
-        </CardBody>
-      </StyledExpiredRoundCard>
-      <CollectWinningsOverlay
-        epoch={epoch}
-        payout={formattedPayout}
-        betAmount={betAmount ? formatBigNumberToFixed(betAmount, 4) : '0'}
-        isBottom={hasEnteredDown}
-      />
-    </Box>
-  )
+    return (
+        <Box position="relative">
+            <StyledExpiredRoundCard>
+                <CardHeader
+                    status="expired"
+                    icon={<BlockIcon mr="4px" width="21px" color="textDisabled"/>}
+                    title={t('Expired')}
+                    blockNumber={endBlock}
+                    epoch={round.epoch}
+                />
+                <CardBody p="16px" style={{position: 'relative'}}>
+                    <MultiplierArrow
+                        betAmount={betAmount}
+                        multiplier={bullMultiplier}
+                        isActive={betPosition === BetPosition.BULL}
+                        hasEntered={hasEnteredUp}
+                    />
+                    <RoundResult round={round} hasFailed={hasRoundFailed}/>
+                    <MultiplierArrow
+                        betAmount={betAmount}
+                        multiplier={bearMultiplier}
+                        betPosition={BetPosition.BEAR}
+                        isActive={betPosition === BetPosition.BEAR}
+                        hasEntered={hasEnteredDown}
+                    />
+                </CardBody>
+            </StyledExpiredRoundCard>
+            <CollectWinningsOverlay
+                epoch={epoch}
+                payout={formattedPayout}
+                betAmount={betAmount ? formatBigNumberToFixed(betAmount, 4) : '0'}
+                isBottom={hasEnteredDown}
+            />
+        </Box>
+    )
 }
 
 export default ExpiredRoundCard

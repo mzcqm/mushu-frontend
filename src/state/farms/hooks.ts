@@ -71,12 +71,16 @@ export const useFarmUser = (pid) => {
 // Return the base token price for a farm, from a given pid
 export const useBusdPriceFromPid = (pid: number): BigNumber => {
   const farm = useFarmFromPid(pid)
+  if(farm.pid == 0 ){
+    return new BigNumber(farm.tokenPriceVsQuote)
+  }
   return farm && new BigNumber(farm.token.busdPrice)
 }
 
 export const useLpTokenPrice = (symbol: string) => {
   const farm = useFarmFromLpSymbol(symbol)
   const farmTokenPriceInUsd = useBusdPriceFromPid(farm.pid)
+
   let lpTokenPrice = BIG_ZERO
 
   if (farm.lpTotalSupply && farm.lpTotalInQuoteToken) {
@@ -88,20 +92,17 @@ export const useLpTokenPrice = (symbol: string) => {
     const totalLpTokens = getBalanceAmount(new BigNumber(farm.lpTotalSupply))
     lpTokenPrice = overallValueOfAllTokensInFarm.div(totalLpTokens)
   }
-
   return lpTokenPrice
 }
 
 // /!\ Deprecated , use the BUSD hook in /hooks
 
 export const usePriceBnbBusd = (): BigNumber => {
-  // const bnbBusdFarm = useFarmFromPid(0)
-  // return new BigNumber(bnbBusdFarm.quoteToken.busdPrice)
-  return new BigNumber(1)
+  const bnbBusdFarm = useFarmFromPid(2)
+  return new BigNumber(bnbBusdFarm.quoteToken.busdPrice)
 }
 
 export const usePriceCakeBusd = (): BigNumber => {
-  // const cakeBnbFarm = useFarmFromPid(0)
-  // return new BigNumber(cakeBnbFarm.token.busdPrice)
-  return new BigNumber(1)
+  const cakeBnbFarm = useFarmFromPid(0)
+  return new BigNumber(cakeBnbFarm.tokenPriceVsQuote)
 }

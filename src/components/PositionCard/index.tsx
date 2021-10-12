@@ -1,16 +1,6 @@
 import React, {useState} from 'react'
-import {JSBI, Pair, Percent} from 'sdk'
-import {
-    Button,
-    Text,
-    ChevronUpIcon,
-    ChevronDownIcon,
-    Card,
-    CardBody,
-    Flex,
-    CardProps,
-    AddIcon,
-} from 'uikit'
+import {JSBI, Percent} from 'sdk'
+import {AddIcon, Button, Card, CardBody, CardProps, ChevronDownIcon, ChevronUpIcon, Flex, Text,} from 'uikit'
 import {Link} from 'react-router-dom'
 import styled from 'styled-components'
 import {useTranslation} from 'contexts/Localization'

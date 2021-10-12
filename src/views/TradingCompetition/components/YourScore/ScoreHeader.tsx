@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
-import { NoProfileAvatarIcon, LaurelLeftIcon, LaurelRightIcon, Skeleton } from 'uikit'
-import { YourScoreProps } from '../../types'
+import {LaurelLeftIcon, LaurelRightIcon, NoProfileAvatarIcon, Skeleton} from 'uikit'
+import {YourScoreProps} from '../../types'
 import ProfileAvatar from '../../../Profile/components/ProfileAvatar'
 import Sticker from '../Sticker'
 
@@ -12,13 +12,13 @@ const Wrapper = styled.div`
 `
 
 const LaurelWrapper = styled.div<{ dir?: 'left' | 'right' }>`
-  transform: ${({ dir }) => (dir === 'left' ? 'rotate(30deg)' : 'rotate(-30deg)')};
+  transform: ${({dir}) => (dir === 'left' ? 'rotate(30deg)' : 'rotate(-30deg)')};
   svg {
     fill: #27262c;
     opacity: 0.5;
     height: 32px;
     width: auto;
-    ${({ theme }) => theme.mediaQueries.sm} {
+    ${({theme}) => theme.mediaQueries.sm} {
       height: 45px;
     }
   }
@@ -34,25 +34,25 @@ const StyledNoProfileAvatarIcon = styled(NoProfileAvatarIcon)`
   height: 100%;
 `
 
-const ScoreHeader: React.FC<YourScoreProps> = ({ profile, isLoading }) => {
-  return (
-    <Wrapper>
-      <LaurelWrapper dir="left">
-        <LaurelLeftIcon />
-      </LaurelWrapper>
-      {isLoading ? (
-        <Skeleton height="96px" width="96px" variant="circle" />
-      ) : (
-        <ProfileWrapper>
-          <Sticker>{profile ? <ProfileAvatar profile={profile} /> : <StyledNoProfileAvatarIcon />}</Sticker>
-        </ProfileWrapper>
-      )}
+const ScoreHeader: React.FC<YourScoreProps> = ({profile, isLoading}) => {
+    return (
+        <Wrapper>
+            <LaurelWrapper dir="left">
+                <LaurelLeftIcon/>
+            </LaurelWrapper>
+            {isLoading ? (
+                <Skeleton height="96px" width="96px" variant="circle"/>
+            ) : (
+                <ProfileWrapper>
+                    <Sticker>{profile ? <ProfileAvatar profile={profile}/> : <StyledNoProfileAvatarIcon/>}</Sticker>
+                </ProfileWrapper>
+            )}
 
-      <LaurelWrapper dir="right">
-        <LaurelRightIcon />
-      </LaurelWrapper>
-    </Wrapper>
-  )
+            <LaurelWrapper dir="right">
+                <LaurelRightIcon/>
+            </LaurelWrapper>
+        </Wrapper>
+    )
 }
 
 export default ScoreHeader

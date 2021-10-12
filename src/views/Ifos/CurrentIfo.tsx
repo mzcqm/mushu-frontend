@@ -1,5 +1,5 @@
 import React from 'react'
-import { ifosConfig } from 'config/constants'
+import {ifosConfig} from 'config/constants'
 import useGetPublicIfoV2Data from 'views/Ifos/hooks/v2/useGetPublicIfoData'
 import useGetWalletIfoV2Data from 'views/Ifos/hooks/v2/useGetWalletIfoData'
 import IfoFoldableCard from './components/IfoFoldableCard'
@@ -13,16 +13,17 @@ import IfoQuestions from './components/IfoQuestions'
 const activeIfo = ifosConfig.find((ifo) => ifo.isActive)
 
 const Ifo = () => {
-  const publicIfoData = useGetPublicIfoV2Data(activeIfo)
-  const walletIfoData = useGetWalletIfoV2Data(activeIfo)
+    const publicIfoData = useGetPublicIfoV2Data(activeIfo)
+    const walletIfoData = useGetWalletIfoV2Data(activeIfo)
 
-  return (
-    <IfoLayout>
-      <IfoFoldableCard ifo={activeIfo} publicIfoData={publicIfoData} walletIfoData={walletIfoData} isInitiallyVisible />
-      <IfoSteps ifo={activeIfo} walletIfoData={walletIfoData} />
-      <IfoQuestions />
-    </IfoLayout>
-  )
+    return (
+        <IfoLayout>
+            <IfoFoldableCard ifo={activeIfo} publicIfoData={publicIfoData} walletIfoData={walletIfoData}
+                             isInitiallyVisible/>
+            <IfoSteps ifo={activeIfo} walletIfoData={walletIfoData}/>
+            <IfoQuestions/>
+        </IfoLayout>
+    )
 }
 
 export default Ifo

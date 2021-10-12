@@ -10,11 +10,11 @@
  * I'll leave TODO: comment here to check back later if there is update to types
  *
  */
-import styled, { keyframes } from 'styled-components'
+import styled, {keyframes} from 'styled-components'
 
 interface SliceProps {
-  length: number
-  offset?: number
+    length: number
+    offset?: number
 }
 
 export const DrawAnimation = keyframes`
@@ -22,7 +22,7 @@ export const DrawAnimation = keyframes`
     stroke-dasharray: 0, 339.292
   }
   to {
-    stroke-dasharray: ${({ length }: SliceProps) => length} 339.292;
+    stroke-dasharray: ${({length}: SliceProps) => length} 339.292;
   }
 `
 

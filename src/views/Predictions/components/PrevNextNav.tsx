@@ -1,7 +1,7 @@
 import React from 'react'
-import { ArrowBackIcon, ArrowForwardIcon, BunnyCardsIcon, Card, IconButton } from 'uikit'
+import {ArrowBackIcon, ArrowForwardIcon, BunnyCardsIcon, Card, IconButton} from 'uikit'
 import styled from 'styled-components'
-import { useGetCurrentEpoch, useGetSortedRounds } from 'state/hooks'
+import {useGetCurrentEpoch, useGetSortedRounds} from 'state/hooks'
 import useSwiper from '../hooks/useSwiper'
 
 const StyledPrevNextNav = styled(Card)`
@@ -12,7 +12,7 @@ const StyledPrevNextNav = styled(Card)`
   position: relative;
   width: 128px;
 
-  ${({ theme }) => theme.mediaQueries.lg} {
+  ${({theme}) => theme.mediaQueries.lg} {
     display: flex;
   }
 `
@@ -25,38 +25,38 @@ const Icon = styled.div`
 `
 
 const PrevNextNav = () => {
-  const { swiper } = useSwiper()
-  const currentEpoch = useGetCurrentEpoch()
-  const rounds = useGetSortedRounds()
+    const {swiper} = useSwiper()
+    const currentEpoch = useGetCurrentEpoch()
+    const rounds = useGetSortedRounds()
 
-  const handlePrevSlide = () => {
-    swiper.slidePrev()
-  }
+    const handlePrevSlide = () => {
+        swiper.slidePrev()
+    }
 
-  const handleNextSlide = () => {
-    swiper.slideNext()
-  }
+    const handleNextSlide = () => {
+        swiper.slideNext()
+    }
 
-  const handleSlideToLive = () => {
-    const currentEpochIndex = rounds.findIndex((round) => round.epoch === currentEpoch)
+    const handleSlideToLive = () => {
+        const currentEpochIndex = rounds.findIndex((round) => round.epoch === currentEpoch)
 
-    swiper.slideTo(currentEpochIndex - 1)
-    swiper.update()
-  }
+        swiper.slideTo(currentEpochIndex - 1)
+        swiper.update()
+    }
 
-  return (
-    <StyledPrevNextNav>
-      <IconButton variant="text" scale="sm" onClick={handlePrevSlide}>
-        <ArrowBackIcon color="primary" width="24px" />
-      </IconButton>
-      <Icon onClick={handleSlideToLive}>
-        <BunnyCardsIcon width="64px" />
-      </Icon>
-      <IconButton variant="text" scale="sm" onClick={handleNextSlide}>
-        <ArrowForwardIcon color="primary" width="24px" />
-      </IconButton>
-    </StyledPrevNextNav>
-  )
+    return (
+        <StyledPrevNextNav>
+            <IconButton variant="text" scale="sm" onClick={handlePrevSlide}>
+                <ArrowBackIcon color="primary" width="24px"/>
+            </IconButton>
+            <Icon onClick={handleSlideToLive}>
+                <BunnyCardsIcon width="64px"/>
+            </Icon>
+            <IconButton variant="text" scale="sm" onClick={handleNextSlide}>
+                <ArrowForwardIcon color="primary" width="24px"/>
+            </IconButton>
+        </StyledPrevNextNav>
+    )
 }
 
 export default PrevNextNav

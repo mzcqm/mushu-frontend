@@ -4,8 +4,8 @@ import { PoolConfig, PoolCategory } from './types'
 const pools: PoolConfig[] = [
   {
     sousId: 0,
-    stakingToken: tokens.cake,
-    earningToken: tokens.cake,
+    stakingToken: tokens.mushu,
+    earningToken: tokens.mushu,
     contractAddress: {
       80: '0x0000000000000000000000000000000000000000',
       8080: '0x0000000000000000000000000000000000000000',
@@ -18,8 +18,8 @@ const pools: PoolConfig[] = [
   },
   {
     sousId: 1,
-    stakingToken: tokens.wbnb,
-    earningToken: tokens.cake,
+    stakingToken: tokens.wrna,
+    earningToken: tokens.mushu,
     contractAddress: {
       80: '0x0000000000000000000000000000000000000000',
       8080: '0x0000000000000000000000000000000000000000',
@@ -33,7 +33,7 @@ const pools: PoolConfig[] = [
   {
     sousId: 2,
     stakingToken: tokens.usdt,
-    earningToken: tokens.cake,
+    earningToken: tokens.mushu,
     contractAddress: {
       80: '0x0000000000000000000000000000000000000000',
       8080: '0x0000000000000000000000000000000000000000',
@@ -47,7 +47,7 @@ const pools: PoolConfig[] = [
   {
     sousId: 3,
     stakingToken: tokens.nova,
-    earningToken: tokens.cake,
+    earningToken: tokens.mushu,
     contractAddress: {
       80: '0x0000000000000000000000000000000000000000',
       8080: '0x0000000000000000000000000000000000000000',
@@ -61,7 +61,7 @@ const pools: PoolConfig[] = [
   {
     sousId: 4,
     stakingToken: tokens.vbc,
-    earningToken: tokens.cake,
+    earningToken: tokens.mushu,
     contractAddress: {
       80: '0x0000000000000000000000000000000000000000',
       8080: '0x0000000000000000000000000000000000000000',
@@ -75,7 +75,7 @@ const pools: PoolConfig[] = [
   {
     sousId: 4,
     stakingToken: tokens.lend,
-    earningToken: tokens.cake,
+    earningToken: tokens.mushu,
     contractAddress: {
       80: '0x0000000000000000000000000000000000000000',
       8080: '0x0000000000000000000000000000000000000000',

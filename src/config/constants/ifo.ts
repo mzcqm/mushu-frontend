@@ -27,7 +27,7 @@ const ifos: Ifo[] = [
       distributionRatio: 0.7,
     },
     currency: cakeBnbLpToken,
-    token: tokens.cake,
+    token: tokens.mushu,
     releaseBlockNumber: 7707736,
     campaignId: '511110000',
     articleUrl: 'https://pancakeswap.medium.com/kalmar-kalm-ifo-to-be-hosted-on-pancakeswap-4540059753e4',

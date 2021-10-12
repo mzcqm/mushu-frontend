@@ -1,8 +1,8 @@
 import React from 'react'
-import { Card, CardBody, Heading } from 'uikit'
+import {Card, CardBody, Heading} from 'uikit'
 import styled from 'styled-components'
-import { Timeline } from 'react-twitter-widgets'
-import { useTranslation } from 'contexts/Localization'
+import {Timeline} from 'react-twitter-widgets'
+import {useTranslation} from 'contexts/Localization'
 
 const StyledTwitterCard = styled(Card)`
   margin-left: auto;
@@ -18,27 +18,27 @@ const StyledTwitterCard = styled(Card)`
 `
 
 const TwitterCard = () => {
-  const {t} = useTranslation()
-  return (
-    <StyledTwitterCard>
-      <CardBody>
-        <Heading scale="xl" mb="24px">
-          {t('News')}
-        </Heading>
-        <Timeline
-          dataSource={{
-            sourceType: 'profile',
-            screenName: '',
-          }}
-          options={{
-            height: '300',
-            chrome: 'noheader, nofooter',
-            width: '400',
-          }}
-        />
-      </CardBody>
-    </StyledTwitterCard>
-  )
+    const {t} = useTranslation()
+    return (
+        <StyledTwitterCard>
+            <CardBody>
+                <Heading scale="xl" mb="24px">
+                    {t('News')}
+                </Heading>
+                <Timeline
+                    dataSource={{
+                        sourceType: 'profile',
+                        screenName: '',
+                    }}
+                    options={{
+                        height: '300',
+                        chrome: 'noheader, nofooter',
+                        width: '400',
+                    }}
+                />
+            </CardBody>
+        </StyledTwitterCard>
+    )
 }
 
 export default TwitterCard

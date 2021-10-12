@@ -1,9 +1,9 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Card, CardBody, Heading } from 'uikit'
+import {Card, CardBody, Heading} from 'uikit'
 
 interface NotificationProps {
-  title: string
+    title: string
 }
 
 // const BunnyDecoration = styled.div`
@@ -36,22 +36,23 @@ const BunnyDecoration = styled.div`
   z-index: 5;
 `
 
-const Notification: React.FC<NotificationProps> = ({ title, children }) => {
-  return (
-    <Wrapper>
-      <CardWrapper>
-        <BunnyDecoration>
-          <img src="/images/decorations/hiccup-bunny.png" alt="bunny decoration" height="121px" width="130px" />
-        </BunnyDecoration>
-        <Card>
-          <CardBody>
-            <Heading mb="24px">{title}</Heading>
-            {children}
-          </CardBody>
-        </Card>
-      </CardWrapper>
-    </Wrapper>
-  )
+const Notification: React.FC<NotificationProps> = ({title, children}) => {
+    return (
+        <Wrapper>
+            <CardWrapper>
+                <BunnyDecoration>
+                    <img src="/images/decorations/hiccup-bunny.png" alt="bunny decoration" height="121px"
+                         width="130px"/>
+                </BunnyDecoration>
+                <Card>
+                    <CardBody>
+                        <Heading mb="24px">{title}</Heading>
+                        {children}
+                    </CardBody>
+                </Card>
+            </CardWrapper>
+        </Wrapper>
+    )
 }
 
 export default Notification

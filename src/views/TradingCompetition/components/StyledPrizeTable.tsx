@@ -3,7 +3,7 @@ import styled from 'styled-components'
 export const Td = styled.td`
   padding: 4px 0;
 
-  ${({ theme }) => theme.mediaQueries.sm} {
+  ${({theme}) => theme.mediaQueries.sm} {
     padding: 8px;
   }
 `
@@ -26,11 +26,11 @@ export const StyledPrizeTable = styled.table`
     padding: 16px 0;
     text-transform: uppercase;
 
-    ${({ theme }) => theme.mediaQueries.xs} {
+    ${({theme}) => theme.mediaQueries.xs} {
       padding: 16px 8px;
     }
 
-    ${({ theme }) => theme.mediaQueries.sm} {
+    ${({theme}) => theme.mediaQueries.sm} {
       padding: 16px;
     }
   }

@@ -1,15 +1,15 @@
-import React, { CSSProperties } from 'react'
-import { Token } from 'sdk'
-import { Button, Text, CheckmarkCircleIcon } from 'uikit'
-import { AutoRow, RowFixed } from 'components/Layout/Row'
-import { AutoColumn } from 'components/Layout/Column'
+import React, {CSSProperties} from 'react'
+import {Token} from 'sdk'
+import {Button, CheckmarkCircleIcon, Text} from 'uikit'
+import {AutoRow, RowFixed} from 'components/Layout/Row'
+import {AutoColumn} from 'components/Layout/Column'
 import CurrencyLogo from 'components/Logo/CurrencyLogo'
-import { ListLogo } from 'components/Logo'
+import {ListLogo} from 'components/Logo'
 import useActiveWeb3React from 'hooks/useActiveWeb3React'
-import { useCombinedInactiveList } from 'state/lists/hooks'
+import {useCombinedInactiveList} from 'state/lists/hooks'
 import styled from 'styled-components'
-import { useIsUserAddedToken, useIsTokenActive } from 'hooks/Tokens'
-import { useTranslation } from 'contexts/Localization'
+import {useIsTokenActive, useIsUserAddedToken} from 'hooks/Tokens'
+import {useTranslation} from 'contexts/Localization'
 
 const TokenSection = styled.div<{ dim?: boolean }>`
   padding: 4px 20px;
@@ -19,14 +19,14 @@ const TokenSection = styled.div<{ dim?: boolean }>`
   grid-gap: 16px;
   align-items: center;
 
-  opacity: ${({ dim }) => (dim ? '0.4' : '1')};
+  opacity: ${({dim}) => (dim ? '0.4' : '1')};
 `
 
 const CheckIcon = styled(CheckmarkCircleIcon)`
   height: 16px;
   width: 16px;
   margin-right: 6px;
-  stroke: ${({ theme }) => theme.colors.success};
+  stroke: ${({theme}) => theme.colors.success};
 `
 
 const NameOverflow = styled.div`
@@ -39,68 +39,68 @@ const NameOverflow = styled.div`
 `
 
 export default function ImportRow({
-  token,
-  style,
-  dim,
-  showImportView,
-  setImportToken,
-}: {
-  token: Token
-  style?: CSSProperties
-  dim?: boolean
-  showImportView: () => void
-  setImportToken: (token: Token) => void
+                                      token,
+                                      style,
+                                      dim,
+                                      showImportView,
+                                      setImportToken,
+                                  }: {
+    token: Token
+    style?: CSSProperties
+    dim?: boolean
+    showImportView: () => void
+    setImportToken: (token: Token) => void
 }) {
-  // gloabls
-  const { chainId } = useActiveWeb3React()
+    // gloabls
+    const {chainId} = useActiveWeb3React()
 
-  const { t } = useTranslation()
+    const {t} = useTranslation()
 
-  // check if token comes from list
-  const inactiveTokenList = useCombinedInactiveList()
-  const list = chainId && inactiveTokenList?.[chainId]?.[token.address]?.list
+    // check if token comes from list
+    const inactiveTokenList = useCombinedInactiveList()
+    const list = chainId && inactiveTokenList?.[chainId]?.[token.address]?.list
 
-  // check if already active on list or local storage tokens
-  const isAdded = useIsUserAddedToken(token)
-  const isActive = useIsTokenActive(token)
+    // check if already active on list or local storage tokens
+    const isAdded = useIsUserAddedToken(token)
+    const isActive = useIsTokenActive(token)
 
-  return (
-    <TokenSection style={style}>
-      <CurrencyLogo currency={token} size="24px" style={{ opacity: dim ? '0.6' : '1' }} />
-      <AutoColumn gap="4px" style={{ opacity: dim ? '0.6' : '1' }}>
-        <AutoRow>
-          <Text>{token.symbol}</Text>
-          <Text color="textDisabled" ml="8px">
-            <NameOverflow title={token.name}>{token.name}</NameOverflow>
-          </Text>
-        </AutoRow>
-        {list && list.logoURI && (
-          <RowFixed>
-            <Text small mr="4px" color="textSubtle">
-              {t('via')} {list.name}
-            </Text>
-            <ListLogo logoURI={list.logoURI} size="12px" />
-          </RowFixed>
-        )}
-      </AutoColumn>
-      {!isActive && !isAdded ? (
-        <Button
-          width="fit-content"
-          onClick={() => {
-            if (setImportToken) {
-              setImportToken(token)
-            }
-            showImportView()
-          }}
-        >
-          {t('Import')}
-        </Button>
-      ) : (
-        <RowFixed style={{ minWidth: 'fit-content' }}>
-          <CheckIcon />
-          <Text color="success">Active</Text>
-        </RowFixed>
-      )}
-    </TokenSection>
-  )
+    return (
+        <TokenSection style={style}>
+            <CurrencyLogo currency={token} size="24px" style={{opacity: dim ? '0.6' : '1'}}/>
+            <AutoColumn gap="4px" style={{opacity: dim ? '0.6' : '1'}}>
+                <AutoRow>
+                    <Text>{token.symbol}</Text>
+                    <Text color="textDisabled" ml="8px">
+                        <NameOverflow title={token.name}>{token.name}</NameOverflow>
+                    </Text>
+                </AutoRow>
+                {list && list.logoURI && (
+                    <RowFixed>
+                        <Text small mr="4px" color="textSubtle">
+                            {t('via')} {list.name}
+                        </Text>
+                        <ListLogo logoURI={list.logoURI} size="12px"/>
+                    </RowFixed>
+                )}
+            </AutoColumn>
+            {!isActive && !isAdded ? (
+                <Button
+                    width="fit-content"
+                    onClick={() => {
+                        if (setImportToken) {
+                            setImportToken(token)
+                        }
+                        showImportView()
+                    }}
+                >
+                    {t('Import')}
+                </Button>
+            ) : (
+                <RowFixed style={{minWidth: 'fit-content'}}>
+                    <CheckIcon/>
+                    <Text color="success">Active</Text>
+                </RowFixed>
+            )}
+        </TokenSection>
+    )
 }

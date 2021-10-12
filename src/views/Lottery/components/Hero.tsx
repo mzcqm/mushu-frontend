@@ -1,13 +1,13 @@
 import React from 'react'
-import styled, { keyframes } from 'styled-components'
-import { Box, Flex, Heading, Skeleton } from 'uikit'
-import { LotteryStatus } from 'config/constants/types'
-import { useTranslation } from 'contexts/Localization'
-import { usePriceCakeBusd } from 'state/farms/hooks'
-import { useLottery } from 'state/lottery/hooks'
-import { getBalanceNumber } from 'utils/formatBalance'
+import styled, {keyframes} from 'styled-components'
+import {Box, Flex, Heading, Skeleton} from 'uikit'
+import {LotteryStatus} from 'config/constants/types'
+import {useTranslation} from 'contexts/Localization'
+import {usePriceCakeBusd} from 'state/farms/hooks'
+import {useLottery} from 'state/lottery/hooks'
+import {getBalanceNumber} from 'utils/formatBalance'
 import Balance from 'components/Balance'
-import { TicketPurchaseCard } from '../svgs'
+import {TicketPurchaseCard} from '../svgs'
 import BuyTicketsButton from './BuyTicketsButton'
 
 const floatingStarsLeft = keyframes`
@@ -75,16 +75,16 @@ const TicketContainer = styled(Flex)`
 `
 
 const PrizeTotalBalance = styled(Balance)`
-  background: ${({ theme }) => theme.colors.gradients.gold};
+  background: ${({theme}) => theme.colors.gradients.gold};
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 `
 
 const StyledBuyTicketButton = styled(BuyTicketsButton)<{ disabled: boolean }>`
-  background: ${({ theme, disabled }) =>
+  background: ${({theme, disabled}) =>
     disabled ? theme.colors.disabled : 'linear-gradient(180deg, #7645d9 0%, #452a7a 100%)'};
   width: 200px;
-  ${({ theme }) => theme.mediaQueries.xs} {
+  ${({theme}) => theme.mediaQueries.xs} {
     width: 240px;
   }
 `
@@ -142,7 +142,7 @@ const StarsDecorations = styled(Box)`
     animation: ${floatingTickeRight} 6s ease-in-out infinite;
   }
 
-  ${({ theme }) => theme.mediaQueries.sm} {
+  ${({theme}) => theme.mediaQueries.sm} {
     & :nth-child(1) {
       left: 3%;
       top: 42%;
@@ -165,7 +165,7 @@ const StarsDecorations = styled(Box)`
     }
   }
 
-  ${({ theme }) => theme.mediaQueries.md} {
+  ${({theme}) => theme.mediaQueries.md} {
     & :nth-child(1) {
       left: 10%;
       top: 42%;
@@ -188,7 +188,7 @@ const StarsDecorations = styled(Box)`
     }
   }
 
-  ${({ theme }) => theme.mediaQueries.xl} {
+  ${({theme}) => theme.mediaQueries.xl} {
     & :nth-child(1) {
       left: 19%;
       top: 42%;
@@ -213,69 +213,69 @@ const StarsDecorations = styled(Box)`
 `
 
 const Hero = () => {
-  const { t } = useTranslation()
-  const {
-    currentRound: { amountCollectedInCake, status },
-    isTransitioning,
-  } = useLottery()
+    const {t} = useTranslation()
+    const {
+        currentRound: {amountCollectedInCake, status},
+        isTransitioning,
+    } = useLottery()
 
-  const cakePriceBusd = usePriceCakeBusd()
-  const prizeInBusd = amountCollectedInCake.times(cakePriceBusd)
-  const prizeTotal = getBalanceNumber(prizeInBusd)
-  const ticketBuyIsDisabled = status !== LotteryStatus.OPEN || isTransitioning
+    const cakePriceBusd = usePriceCakeBusd()
+    const prizeInBusd = amountCollectedInCake.times(cakePriceBusd)
+    const prizeTotal = getBalanceNumber(prizeInBusd)
+    const ticketBuyIsDisabled = status !== LotteryStatus.OPEN || isTransitioning
 
-  const getHeroHeading = () => {
-    if (status === LotteryStatus.OPEN) {
-      return (
-        <>
-          {prizeInBusd.isNaN() ? (
-            <Skeleton my="7px" height={60} width={190} />
-          ) : (
-            <PrizeTotalBalance fontSize="64px" bold prefix="$" value={prizeTotal} mb="8px" decimals={0} />
-          )}
-          <Heading mb="32px" scale="lg" color="#ffffff">
-            {t('in prizes!')}
-          </Heading>
-        </>
-      )
+    const getHeroHeading = () => {
+        if (status === LotteryStatus.OPEN) {
+            return (
+                <>
+                    {prizeInBusd.isNaN() ? (
+                        <Skeleton my="7px" height={60} width={190}/>
+                    ) : (
+                        <PrizeTotalBalance fontSize="64px" bold prefix="$" value={prizeTotal} mb="8px" decimals={0}/>
+                    )}
+                    <Heading mb="32px" scale="lg" color="#ffffff">
+                        {t('in prizes!')}
+                    </Heading>
+                </>
+            )
+        }
+        return (
+            <Heading mb="24px" scale="xl" color="#ffffff">
+                {t('Tickets on sale soon')}
+            </Heading>
+        )
     }
-    return (
-      <Heading mb="24px" scale="xl" color="#ffffff">
-        {t('Tickets on sale soon')}
-      </Heading>
-    )
-  }
 
-  return (
-    <Flex flexDirection="column" alignItems="center" justifyContent="center">
-      <Decorations />
-      <StarsDecorations display={['none', 'none', 'block']}>
-        <img src="/images/lottery/star-big.png" width="124px" height="109px" alt="" />
-        <img src="/images/lottery/star-small.png" width="70px" height="62px" alt="" />
-        <img src="/images/lottery/three-stars.png" width="130px" height="144px" alt="" />
-        <img src="/images/lottery/ticket-l.png" width="123px" height="83px" alt="" />
-        <img src="/images/lottery/ticket-r.png" width="121px" height="72px" alt="" />
-      </StarsDecorations>
-      <Heading mb="8px" scale="md" color="#ffffff">
-        {t('The PancakeSwap Lottery')}
-      </Heading>
-      {getHeroHeading()}
-      <TicketContainer
-        position="relative"
-        width={['240px', '288px']}
-        height={['94px', '113px']}
-        alignItems="center"
-        justifyContent="center"
-      >
-        <ButtonWrapper>
-          <StyledBuyTicketButton disabled={ticketBuyIsDisabled} />
-        </ButtonWrapper>
-        <TicketSvgWrapper>
-          <TicketPurchaseCard width="100%" />
-        </TicketSvgWrapper>
-      </TicketContainer>
-    </Flex>
-  )
+    return (
+        <Flex flexDirection="column" alignItems="center" justifyContent="center">
+            <Decorations/>
+            <StarsDecorations display={['none', 'none', 'block']}>
+                <img src="/images/lottery/star-big.png" width="124px" height="109px" alt=""/>
+                <img src="/images/lottery/star-small.png" width="70px" height="62px" alt=""/>
+                <img src="/images/lottery/three-stars.png" width="130px" height="144px" alt=""/>
+                <img src="/images/lottery/ticket-l.png" width="123px" height="83px" alt=""/>
+                <img src="/images/lottery/ticket-r.png" width="121px" height="72px" alt=""/>
+            </StarsDecorations>
+            <Heading mb="8px" scale="md" color="#ffffff">
+                {t('The PancakeSwap Lottery')}
+            </Heading>
+            {getHeroHeading()}
+            <TicketContainer
+                position="relative"
+                width={['240px', '288px']}
+                height={['94px', '113px']}
+                alignItems="center"
+                justifyContent="center"
+            >
+                <ButtonWrapper>
+                    <StyledBuyTicketButton disabled={ticketBuyIsDisabled}/>
+                </ButtonWrapper>
+                <TicketSvgWrapper>
+                    <TicketPurchaseCard width="100%"/>
+                </TicketSvgWrapper>
+            </TicketContainer>
+        </Flex>
+    )
 }
 
 export default Hero

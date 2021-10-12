@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Flex } from 'uikit'
+import {Flex} from 'uikit'
 import Menu from './components/Menu'
 import TradingView from './components/TradingView'
 
@@ -14,16 +14,16 @@ const ChartWrapper = styled.div`
 `
 
 const Chart = () => {
-  return (
-    <Flex flexDirection="column" height="100%">
-      <MenuWrapper>
-        <Menu />
-      </MenuWrapper>
-      <ChartWrapper>
-        <TradingView />
-      </ChartWrapper>
-    </Flex>
-  )
+    return (
+        <Flex flexDirection="column" height="100%">
+            <MenuWrapper>
+                <Menu/>
+            </MenuWrapper>
+            <ChartWrapper>
+                <TradingView/>
+            </ChartWrapper>
+        </Flex>
+    )
 }
 
 export default Chart

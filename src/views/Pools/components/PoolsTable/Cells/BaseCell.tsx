@@ -1,4 +1,4 @@
-import { Flex, Text } from 'uikit'
+import {Flex, Text} from 'uikit'
 import styled from 'styled-components'
 
 const BaseCell = styled.div`

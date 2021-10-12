@@ -1,13 +1,13 @@
-import React, { useEffect, useRef, useState } from 'react'
-import { useWeb3React } from '@web3-react/core'
-import styled, { css, keyframes } from 'styled-components'
-import { Button, CloseIcon, IconButton, TrophyGoldIcon } from 'uikit'
-import { CSSTransition } from 'react-transition-group'
-import { useTranslation } from 'contexts/Localization'
-import { getBetHistory } from 'state/predictions/helpers'
-import { useGetPredictionsStatus, useIsHistoryPaneOpen } from 'state/hooks'
-import { useAppDispatch } from 'state'
-import { setHistoryPaneState } from 'state/predictions'
+import React, {useEffect, useRef, useState} from 'react'
+import {useWeb3React} from '@web3-react/core'
+import styled, {css, keyframes} from 'styled-components'
+import {Button, CloseIcon, IconButton, TrophyGoldIcon} from 'uikit'
+import {CSSTransition} from 'react-transition-group'
+import {useTranslation} from 'contexts/Localization'
+import {getBetHistory} from 'state/predictions/helpers'
+import {useGetPredictionsStatus, useIsHistoryPaneOpen} from 'state/hooks'
+import {useAppDispatch} from 'state'
+import {setHistoryPaneState} from 'state/predictions'
 
 /**
  * @see https://github.com/animate-css/animate.css/tree/main/source
@@ -98,7 +98,7 @@ const Wrapper = styled.div`
     ${bounceOutAnimation}
   }
 
-  ${({ theme }) => theme.mediaQueries.md} {
+  ${({theme}) => theme.mediaQueries.md} {
     bottom: 16px;
     justify-content: flex-end;
 
@@ -110,7 +110,7 @@ const Wrapper = styled.div`
 
 const Popup = styled.div`
   align-items: center;
-  background-color: ${({ theme }) => theme.colors.secondary};
+  background-color: ${({theme}) => theme.colors.secondary};
   border-radius: 32px;
   color: #ffffff;
   display: flex;
@@ -119,72 +119,72 @@ const Popup = styled.div`
 `
 
 const CollectWinningsPopup = () => {
-  const [isOpen, setIsOpen] = useState(false)
-  const { t } = useTranslation()
-  const ref = useRef(null)
-  const timer = useRef(null)
-  const { account } = useWeb3React()
-  const predictionStatus = useGetPredictionsStatus()
-  const isHistoryPaneOpen = useIsHistoryPaneOpen()
-  const dispatch = useAppDispatch()
+    const [isOpen, setIsOpen] = useState(false)
+    const {t} = useTranslation()
+    const ref = useRef(null)
+    const timer = useRef(null)
+    const {account} = useWeb3React()
+    const predictionStatus = useGetPredictionsStatus()
+    const isHistoryPaneOpen = useIsHistoryPaneOpen()
+    const dispatch = useAppDispatch()
 
-  const handleOpenHistory = () => {
-    dispatch(setHistoryPaneState(true))
-  }
+    const handleOpenHistory = () => {
+        dispatch(setHistoryPaneState(true))
+    }
 
-  const handleClick = () => {
-    setIsOpen(false)
-    clearInterval(timer.current)
-  }
+    const handleClick = () => {
+        setIsOpen(false)
+        clearInterval(timer.current)
+    }
 
-  // Check user's history for unclaimed winners
-  useEffect(() => {
-    let isCancelled = false
-    if (account) {
-      timer.current = setInterval(async () => {
-        const bets = await getBetHistory({ user: account.toLowerCase(), claimed: false })
+    // Check user's history for unclaimed winners
+    useEffect(() => {
+        let isCancelled = false
+        if (account) {
+            timer.current = setInterval(async () => {
+                const bets = await getBetHistory({user: account.toLowerCase(), claimed: false})
 
-        if (!isCancelled) {
-          // Filter out bets that were not winners
-          const winnerBets = bets.filter((bet) => {
-            return bet.position === bet.round.position
-          })
+                if (!isCancelled) {
+                    // Filter out bets that were not winners
+                    const winnerBets = bets.filter((bet) => {
+                        return bet.position === bet.round.position
+                    })
 
-          if (!isHistoryPaneOpen) {
-            setIsOpen(winnerBets.length > 0)
-          }
+                    if (!isHistoryPaneOpen) {
+                        setIsOpen(winnerBets.length > 0)
+                    }
+                }
+            }, 30000)
         }
-      }, 30000)
-    }
 
-    return () => {
-      clearInterval(timer.current)
-      isCancelled = true
-    }
-  }, [account, timer, predictionStatus, setIsOpen, isHistoryPaneOpen])
+        return () => {
+            clearInterval(timer.current)
+            isCancelled = true
+        }
+    }, [account, timer, predictionStatus, setIsOpen, isHistoryPaneOpen])
 
-  // Any time the history pane is open make sure the popup closes
-  useEffect(() => {
-    if (isHistoryPaneOpen) {
-      setIsOpen(false)
-    }
-  }, [isHistoryPaneOpen, setIsOpen])
+    // Any time the history pane is open make sure the popup closes
+    useEffect(() => {
+        if (isHistoryPaneOpen) {
+            setIsOpen(false)
+        }
+    }, [isHistoryPaneOpen, setIsOpen])
 
-  return (
-    <CSSTransition in={isOpen} unmountOnExit nodeRef={ref} timeout={1000} classNames="popup">
-      <Wrapper ref={ref}>
-        <Popup>
-          <TrophyGoldIcon width="64px" style={{ flex: 'none' }} mr="8px" />
-          <Button style={{ flex: 1 }} onClick={handleOpenHistory}>
-            {t('Collect Winnings')}
-          </Button>
-          <IconButton variant="text" onClick={handleClick}>
-            <CloseIcon color="primary" width="24px" />
-          </IconButton>
-        </Popup>
-      </Wrapper>
-    </CSSTransition>
-  )
+    return (
+        <CSSTransition in={isOpen} unmountOnExit nodeRef={ref} timeout={1000} classNames="popup">
+            <Wrapper ref={ref}>
+                <Popup>
+                    <TrophyGoldIcon width="64px" style={{flex: 'none'}} mr="8px"/>
+                    <Button style={{flex: 1}} onClick={handleOpenHistory}>
+                        {t('Collect Winnings')}
+                    </Button>
+                    <IconButton variant="text" onClick={handleClick}>
+                        <CloseIcon color="primary" width="24px"/>
+                    </IconButton>
+                </Popup>
+            </Wrapper>
+        </CSSTransition>
+    )
 }
 
 export default CollectWinningsPopup

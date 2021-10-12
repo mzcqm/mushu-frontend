@@ -9,7 +9,7 @@ export const getAddress = (address: Address): string => {
 }
 
 export const getCakeAddress = () => {
-  return getAddress(tokens.cake.address)
+  return getAddress(tokens.mushu.address)
 }
 export const getMasterChefAddress = () => {
   return getAddress(addresses.masterChef)
@@ -18,7 +18,7 @@ export const getMulticallAddress = () => {
   return getAddress(addresses.multiCall)
 }
 export const getWbnbAddress = () => {
-  return getAddress(tokens.wbnb.address)
+  return getAddress(tokens.wrna.address)
 }
 export const getLotteryV2Address = () => {
   return getAddress(addresses.lotteryV2)
@@ -61,4 +61,7 @@ export const getBunnySpecialCakeVaultAddress = () => {
 }
 export const getBunnySpecialPredictionAddress = () => {
   return getAddress(addresses.bunnySpecialPrediction)
+}
+export const getIdoAddress = () => {
+  return getAddress(addresses.ido)
 }

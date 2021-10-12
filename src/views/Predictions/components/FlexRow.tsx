@@ -1,7 +1,7 @@
 import styled from 'styled-components'
-import { Flex } from 'uikit'
+import {Flex} from 'uikit'
 
-const FlexRow = styled(Flex).attrs({ alignItems: 'center' })`
+const FlexRow = styled(Flex).attrs({alignItems: 'center'})`
   flex: 1;
 `
 

@@ -7,11 +7,11 @@ const NftGrid = styled.div`
   padding-bottom: 24px;
   padding-top: 24px;
 
-  ${({ theme }) => theme.mediaQueries.sm} {
+  ${({theme}) => theme.mediaQueries.sm} {
     grid-template-columns: repeat(2, 1fr);
   }
 
-  ${({ theme }) => theme.mediaQueries.md} {
+  ${({theme}) => theme.mediaQueries.md} {
     grid-template-columns: repeat(3, 1fr);
   }
 `

@@ -1,33 +1,32 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Link, useLocation } from 'react-router-dom'
-import { ButtonMenu, ButtonMenuItem } from 'uikit'
+import {useLocation} from 'react-router-dom'
 
 const StyledNav = styled.nav`
   margin-bottom: 40px;
 `
 
 const getActiveIndex = (pathname: string): number => {
-  if (
-    pathname.includes('/pool') ||
-    pathname.includes('/create') ||
-    pathname.includes('/add') ||
-    pathname.includes('/remove') ||
-    pathname.includes('/find') ||
-    pathname.includes('/liquidity')
-  ) {
-    return 1
-  }
-  return 0
+    if (
+        pathname.includes('/pool') ||
+        pathname.includes('/create') ||
+        pathname.includes('/add') ||
+        pathname.includes('/remove') ||
+        pathname.includes('/find') ||
+        pathname.includes('/liquidity')
+    ) {
+        return 1
+    }
+    return 0
 }
 
 const Nav = () => {
-  const location = useLocation()
-  return (
-    <StyledNav>
-      {' '}
-    </StyledNav>
-  )
+    const location = useLocation()
+    return (
+        <StyledNav>
+            {' '}
+        </StyledNav>
+    )
 }
 // const Nav = () => {
 //   const location = useLocation()

@@ -1,10 +1,10 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Box } from 'uikit'
+import {Box} from 'uikit'
 import Container from '../Layout/Container'
 
 const Outer = styled(Box)<{ background?: string }>`
-  // background: ${({ theme, background }) => background || theme.colors.gradients.bubblegum};
+  // background: ${({theme, background}) => background || theme.colors.gradients.bubblegum};
   background: transparent;
 `
 
@@ -14,10 +14,10 @@ const Inner = styled(Container)`
   text-align: center;
 `
 
-const PageHeader: React.FC<{ background?: string }> = ({ background, children, ...props }) => (
-  <Outer background={background} {...props}>
-    <Inner>{children}</Inner>
-  </Outer>
+const PageHeader: React.FC<{ background?: string }> = ({background, children, ...props}) => (
+    <Outer background={background} {...props}>
+        <Inner>{children}</Inner>
+    </Outer>
 )
 
 export default PageHeader

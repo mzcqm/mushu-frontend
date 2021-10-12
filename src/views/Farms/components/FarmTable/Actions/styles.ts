@@ -2,20 +2,20 @@ import styled from 'styled-components'
 
 export const ActionContainer = styled.div`
   padding: 16px;
-  border: 2px solid ${({ theme }) => theme.colors.input};
+  border: 2px solid ${({theme}) => theme.colors.input};
   border-radius: 16px;
   flex-grow: 1;
   flex-basis: 0;
   margin-bottom: 16px;
 
-  ${({ theme }) => theme.mediaQueries.sm} {
+  ${({theme}) => theme.mediaQueries.sm} {
     margin-left: 12px;
     margin-right: 12px;
     margin-bottom: 0;
     max-height: 100px;
   }
 
-  ${({ theme }) => theme.mediaQueries.xl} {
+  ${({theme}) => theme.mediaQueries.xl} {
     margin-left: 48px;
     margin-right: 0;
     margin-bottom: 0;
@@ -35,5 +35,5 @@ export const ActionContent = styled.div`
 export const Earned = styled.div`
   font-weight: 600;
   font-size: 20px;
-  color: ${({ theme }) => theme.colors.text};
+  color: ${({theme}) => theme.colors.text};
 `

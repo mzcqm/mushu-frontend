@@ -1,10 +1,10 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Heading, Card, CardBody } from 'uikit'
+import {Card, CardBody, Heading} from 'uikit'
 
 interface HowToCardProps {
-  number?: number
-  title?: string
+    number?: number
+    title?: string
 }
 
 const Inner = styled.div`
@@ -29,22 +29,22 @@ const ChildrenWrapper = styled.div`
   grid-row: 2 / 2;
 `
 
-const HowToJoin: React.FC<HowToCardProps> = ({ number, title, children }) => {
-  return (
-    <Card mb="16px">
-      <CardBody>
-        <Inner>
-          <NumberWrapper>
-            <Heading color="textSubtle">{number}</Heading>
-          </NumberWrapper>
-          <TitleWrapper>
-            <Heading color="secondary">{title}</Heading>
-          </TitleWrapper>
-          <ChildrenWrapper>{children}</ChildrenWrapper>
-        </Inner>
-      </CardBody>
-    </Card>
-  )
+const HowToJoin: React.FC<HowToCardProps> = ({number, title, children}) => {
+    return (
+        <Card mb="16px">
+            <CardBody>
+                <Inner>
+                    <NumberWrapper>
+                        <Heading color="textSubtle">{number}</Heading>
+                    </NumberWrapper>
+                    <TitleWrapper>
+                        <Heading color="secondary">{title}</Heading>
+                    </TitleWrapper>
+                    <ChildrenWrapper>{children}</ChildrenWrapper>
+                </Inner>
+            </CardBody>
+        </Card>
+    )
 }
 
 export default HowToJoin

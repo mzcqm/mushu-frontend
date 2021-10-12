@@ -1,19 +1,14 @@
-import tokens from 'config/constants/tokens'
-import { Address } from './types'
-
-const { cake } = tokens
+import {Address} from './types'
 
 interface WarningToken {
-  symbol: string
-  address: Address
+    symbol: string
+    address: Address
 }
 
 interface WarningTokenList {
-  [key: string]: WarningToken
+    [key: string]: WarningToken
 }
 
-const SwapWarningTokens = <WarningTokenList>{
-  cake
-}
+const SwapWarningTokens = <WarningTokenList>{}
 
 export default SwapWarningTokens

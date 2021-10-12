@@ -1,7 +1,7 @@
 import BigNumber from 'bignumber.js'
 import { DatePickerPortal } from 'components/DatePicker'
 import useEagerConnect from 'hooks/useEagerConnect'
-import React, { lazy } from 'react'
+import React, {lazy, useEffect, useState} from 'react'
 import { Redirect, Route, Router, Switch } from 'react-router-dom'
 import { usePollBlockNumber } from 'state/block/hooks'
 import { usePollCoreFarmData } from 'state/farms/hooks'
@@ -24,6 +24,7 @@ import Pools from './views/Pools'
 import RedirectOldRemoveLiquidityPathStructure from './views/RemoveLiquidity/redirects'
 import Swap from './views/Swap'
 import { RedirectPathToSwapOnly, RedirectToSwap } from './views/Swap/redirects'
+import ModalPreSale from "./components/ModalPreSale";
 
 // Route-based code splitting
 // Only pool is included in the main bundle because of it's the most visited page
@@ -37,6 +38,7 @@ const AddLiquidity = lazy(() => import('./views/AddLiquidity'))
 const Liquidity = lazy(() => import('./views/Pool'))
 const PoolFinder = lazy(() => import('./views/PoolFinder'))
 const RemoveLiquidity = lazy(() => import('./views/RemoveLiquidity'))
+const Ido = lazy(() => import('./views/Ido'))
 
 BigNumber.config({
   EXPONENTIAL_AT: 1000,
@@ -48,6 +50,8 @@ const App: React.FC = () => {
   useEagerConnect()
   useFetchProfile()
   usePollCoreFarmData()
+
+  const [isOpenModal, setIsOpenModal] = useState<any>(true);
 
   return (
     <Router history={history}>
@@ -73,6 +77,9 @@ const App: React.FC = () => {
             </Route>
             <Route path="/nft">
               <Nft />
+            </Route>
+            <Route path="/ido">
+              <Ido />
             </Route>
             {/* Using this format because these components use routes injected props. We need to rework them with hooks */}
             <Route exact strict path="/swap" component={Swap} />
@@ -100,6 +107,9 @@ const App: React.FC = () => {
             <Route path="/syrup">
               <Redirect to="/pools" />
             </Route>
+            <Route path="/presale">
+              <Redirect to="/ido" />
+            </Route>
             {/* 404 */}
             <Route component={NotFound} />
           </Switch>
@@ -108,6 +118,7 @@ const App: React.FC = () => {
       <EasterEgg iterations={2} />
       <ToastListener />
       <DatePickerPortal />
+      {/*<ModalPreSale isOpen={isOpenModal} setIsOpen={setIsOpenModal} />*/}
     </Router>
   )
 }
